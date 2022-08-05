@@ -1,0 +1,334 @@
+<!doctype html>
+
+<html lang="ko">
+
+    <head>
+
+        <meta charset="utf-8"/>
+        <title>반응형 사이트</title>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"  />
+        
+        <style>
+        
+            *{box-sizing: border-box; margin:0;
+            font-family: "맑은 고딕","Arial";}
+            
+            #header{width:100%; height:60px; background: #dbc5b1;}
+            
+            #headerin{width:100%; max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; }
+            #logobox{font-size: 2rem; width:20%; display: flex; justify-content: center; align-items: center; height:60px; color:white;}
+            
+            #hdright{display: flex; z-index: 999;  width: 70%; justify-content: space-between;}
+            #navi{}
+            #navi ul{list-style:none; padding: 0;}
+            #navi a{text-decoration: none; display: block;}
+            #menu{width:120%; display: flex; flex-wrap: wrap; }
+            .main{position: relative; width:20%; text-align: center;}
+            .main>a{ color:white; line-height: 60px; font-size: 1.5rem;}
+            .submenu{position: absolute;top:100%; left: 0; width: 100%; text-align: center; z-index: 99; display: none;}
+            .sub>a{line-height: 50px; background: white; color: 	#d3c0b1; transition: .3s;}
+            .sub>a:hover{background:#d3c0b1; color:white;}
+            
+            #navi2 ul{list-style:none; padding: 0;}
+            #navi2 a{text-decoration: none; display: block;}
+            
+            #login{display: flex; margin-left: 20px;}
+            .log{line-height: 60px; margin-right: 20px; }
+            .log>a{color:white;}
+            
+            
+            #menubar{width: 60px; line-height: 60px; font-size: 3rem; text-align: center; color:white; cursor: pointer; display: none;}
+            #menuback{position: fixed; top: 60px; left: 0; width: 100%; height: 100%; background: white; z-index: 99; display: none;}
+            
+            #sec1{width:100%; max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap;}
+            #sec1left{width:50%; overflow: hidden;}
+            #imgbox{display: flex; width:300%;  transition: .3s;}
+            .img{position: relative; width:100%; }
+            .img img{display: block; }
+            .caption{position: absolute; top:30%; left:10%;}
+            .caption h1{font-size: 3rem; color: white; text-shadow: 0 0 8px black; animation: left 2s both;}
+            .caption p {font-size: 1.5rem; color:white; text-shadow: 0 0 8px black; animation: right 2s both;}
+            
+            #noticebox{display: flex; margin-top: 10px;}
+            .notice{width:50%; text-align: center;height:200px; padding-top: 30px; cursor: pointer;}
+            .notice i{font-size: 3rem; width:100%; margin-bottom: 10px; color:#bdac9f;}
+            .notice:hover{background-image: linear-gradient(transparent, rgba(0,0,0,.4));}
+            
+            
+            #sec1right{width:50%; display: flex;}
+            #imgleft{width: 100%;}
+            #imgleft img{display: block; padding: 5px; width: 100%;}
+            .desertimg{z-index: 9; position: relative;}
+            .desertimg h4{color:white;}
+            .desertimg p{color:white;}
+            .desertcaption{position: absolute; top:50%; left:10%; transform: translateY(-50%);}
+            #imgright{width: 100%;}
+            #imgright img{display: block; padding: 5px; width: 100%;}
+            
+            
+            #foot{ width:100%; height:100px; background:	#d3c0b1;}
+            
+            @keyframes left{
+                from{ transform:translateX(-100%); opacity: 0;}
+                to{ transform:translateX(0); opacity: 1;}
+            }
+            
+            @keyframes right{
+                from{transform: skewX(0)}
+                to{transform: skewx(-40deg)}
+            }
+            
+            
+            
+            
+            @media screen and (max-width : 800px ) {
+                #logobox{font-size: 1.3rem;}
+                
+                #sec1left{width: 100%;}
+                .img img{width: 100%;}
+                #sec1right{width: 100%;}
+                #sec1right img{}
+                
+                #menubar{display: block;}
+                
+                #hdright{width: 100%;}
+                #navi{display: none;}
+                #menu{width: 70%;}
+                .main{width: 60%; text-align: left; padding-left: 20px;}
+                .main>a{color:#d3c0b1}
+                .submenu{top:0; left: 100%;}
+                .sub>a{background:#d3c0b1; color:white;}
+            
+                
+                #login{display: none;}
+            } 
+            
+            
+        </style>
+        
+           
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        
+    
+        <script>
+        
+            var slideno=0;
+            
+            function slide(){
+                
+                slideno++;
+                if(slideno > 2) slideno=0;
+                
+                
+                var no=(slideno * -100) + '%';
+                $('#imgbox').css('marginLeft',no);
+            }
+            
+            function playslide(){
+                
+                setInterval('slide()',3000);
+                
+            }
+            
+            
+            
+            $(function(){
+                
+                playslide();
+                
+                $('#menubar').click(function(){
+                  $('#navi, #menuback').fadeToggle();  
+                })
+                
+                $('.main').mouseenter(function(){
+                    $(this).children('.submenu').stop().slideDown();
+                });
+                
+                $('.main').mouseleave(function(){
+                    $(this).children('.submenu').stop().slideUp();
+                });                
+                
+                
+                
+                
+            });
+            
+        </script>
+        
+        
+    </head>
+    
+
+    <body>
+    
+        <header id="header">
+        
+            <div id="headerin">
+                  
+                   <div id="menubar">&equiv;</div>
+                   
+                <div id="logobox">
+                    LOGO
+                </div>
+                
+                    <div id="menuback"></div>
+
+                <div id="hdright">
+                
+                    <nav id="navi">
+                        <ul id="menu">
+                            <li class="main"><a href="#">COMPANY</a>
+                                <ul class="submenu">
+                                    <li class="sub"><a href="#">COMPANY1</a></li>
+                                    <li class="sub"><a href="#">COMPANY2</a></li>
+                                    <li class="sub"><a href="#">COMPANY3</a></li>
+                                </ul>
+                            </li>
+                            <li class="main"><a href="#">BUSINESS</a>
+                                <ul class="submenu">
+                                    <li class="sub"><a href="#">BUSINESS1</a></li>
+                                    <li class="sub"><a href="#">BUSINESS2</a></li>
+                                    <li class="sub"><a href="#">BUSINESS3</a></li>
+                                </ul>
+                            </li>
+                            <li class="main"><a href="#">GALLERY</a>
+                                <ul class="submenu">
+                                    <li class="sub"><a href="#">GALLERY1</a></li>
+                                    <li class="sub"><a href="#">GALLERY2</a></li>
+                                    <li class="sub"><a href="#">GALLERY3</a></li>
+                                    <li class="sub"><a href="#">GALLERY4</a></li>
+                                </ul>
+                            </li>
+                            <li class="main"><a href="#">CONTACT</a>
+                                <ul class="submenu">
+                                    <li class="sub"><a href="#">CONTACT1</a></li>
+                                    <li class="sub"><a href="#">CONTACT2</a></li>
+                                </ul>
+                            </li>
+                            <li class="main"><a href="#">COSTOMER</a>
+                                <ul class="submenu">
+                                    <li class="sub"><a href="#">COSTOMER1</a></li>
+                                    <li class="sub"><a href="#">COSTOMER2</a></li>
+                                    <li class="sub"><a href="#">COSTOMER3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <nav id="navi2">
+                        <ul id="login">
+                            <li class="log"><a href="#">LOGIN</a></li>
+                            <li class="log"><a href="#">JOIN</a></li>
+                        </ul>
+                    </nav>
+                
+                </div>
+                
+            </div>
+            
+        </header>
+        
+        
+        <section id="sec1">
+        
+            <div id="sec1left">
+                
+                <div id="imgbox">
+                    <div class="img">
+                    <img src="images/deser1.jpg" alt="slide"/>
+                        <div class="caption"><h1>LOREM IPSUM</h1> <p>Vestibulum vel turpis et ipsum</p></div>
+                    </div>
+                    
+                    <div class="img">
+                    <img src="images/desert2.jpg" alt="slide"/>
+                        <div class="caption"><h1>LOREM IPSUM</h1> <p>Vestibulum vel turpis et ipsum</p></div>
+                    </div>
+                    
+                    <div class="img">
+                    <img src="images/desert3.jpg" alt="slide"/>
+                        <div class="caption"><h1>LOREM IPSUM</h1> <p>Vestibulum vel turpis et ipsum</p></div>
+                    </div>
+                </div>
+                
+                
+                <div id="noticebox">
+                    
+                    <div class="notice">
+                        <i class="fa-solid fa-caravan"></i>
+                        <h3>Lorem ipsum</h3>
+                        <p> consectetur adipiscing elit</p>
+                    </div>
+                    
+                    <div class="notice">
+                        <i class="fa-solid fa-map-location"></i>
+                        <h3>Lorem ipsum</h3>
+                        <p> consectetur adipiscing elit</p>                        
+                    </div>
+                    
+                </div>
+                
+            </div>
+            
+            
+            <div id="sec1right">
+                
+                <div id="imgleft">
+                    <div class="desertimg">
+                    <img src="images/desert4.jpg" alt="img"/>
+                        <div class="desertcaption">
+                            <h4>Lorem ipsum</h4>
+                            <p>Morbi at quam nulla.</p>
+                        </div>
+                    </div>
+                    <div class="desertimg">
+                    <img src="images/desert5.jpg" alt="img"/>
+                        <div class="desertcaption">
+                            <h4>Lorem ipsum</h4>
+                            <p>Morbi at quam nulla.</p>
+                        </div>                        
+                    </div>
+                    <div class="desertimg">
+                    <img src="images/desert6.jpg" alt="img"/>
+                        <div class="desertcaption">
+                            <h4>Lorem ipsum</h4>
+                            <p>Morbi at quam nulla.</p>
+                        </div>                        
+                    </div>
+                </div>
+            
+                <div id="imgright">
+                    <div class="desertimg">
+                    <img src="images/desert9.jpg" alt="img"/>
+                        <div class="desertcaption">
+                            <h4>Lorem ipsum</h4>
+                            <p>Morbi at quam nulla.</p>
+                        </div>                        
+                    </div>
+                    <div class="desertimg">
+                    <img src="images/desert7.jpg" alt="img"/>
+                        <div class="desertcaption">
+                            <h4>Lorem ipsum</h4>
+                            <p>Morbi at quam nulla.</p>
+                        </div>                        
+                    </div>
+                    <div class="desertimg">
+                    <img src="images/desert8.jpg" alt="img"/>
+                        <div class="desertcaption">
+                            <h4>Lorem ipsum</h4>
+                            <p>Morbi at quam nulla.</p>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+        
+        
+        <footer id="foot">
+            
+        </footer>
+        
+    </body>
+
+</html>
